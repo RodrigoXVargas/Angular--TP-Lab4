@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataManagerService } from 'src/app/servicios/data-manager.service';
 import { Router } from '@angular/router';
+import { Instrumento } from 'src/app/entidades/InstrumentoEntidad';
 
 @Component({
   selector: 'app-products',
@@ -9,20 +10,29 @@ import { Router } from '@angular/router';
 })
 export class ProductsComponent implements OnInit{
 
-  instrumentosArr: any[] =[];
+  instrumentosArr: Instrumento[] = [];
+  loading = true;
 
   constructor(private dataManagerService: DataManagerService, private router: Router){
 
   }
 
-  ngOnInit(): void {
-    this.instrumentosArr = this.dataManagerService.getInstrumentos();
-    console.log(this.instrumentosArr);
+  ngOnInit() {
+    this.dataManagerService.getInstrumentosFromDataBase()
+    .subscribe(data => {
+      for(let instrumento in data){
+        this.instrumentosArr.push(data[instrumento]);
+      }
+      this.loading = false;
+    })
   }
 
-  public verInstrumento(idx:string){
-    console.log("ID Instrumento"+ idx);
-    this.router.navigate(["/detalleProducts", idx])
+  public validarURLImagen(url: string): string {
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    } else {
+      return "http://localhost:4200/assets/img/" + url;
+    }
   }
 
 

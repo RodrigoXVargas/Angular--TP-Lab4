@@ -5,16 +5,16 @@
         <div class="CardProducto" *ngFor="let instrumentoAux of instrumentosArr; let i = index">
             <div class="Card-Content">
                 <div class="card-imagen-content">
-                    <a class="buttom-imagen" (click)="verInstrumento(instrumentoAux.id)"> <img
-                            src="assets/img/{{instrumentoAux.imagen}}" class="card-imagen" alt="..." /></a>
+                    <a class="buttom-imagen" [routerLink]="['/detalleProducts', instrumentoAux.id]"> <img
+                        [src]="validarURLImagen(instrumentoAux.imagen)" class="card-imagen" alt="..." /></a>
                 </div>
                 <div class="card-datos">
                     <div class="card-datos-content">
                         <p class="card-titulo">{{instrumentoAux.instrumento}}</p>
                         <h3 class="card-precio">{{instrumentoAux.precio}}</h3>
-                        <h6 class="card-envioGratis" *ngIf="instrumentoAux.costoEnvio ==='G'"><img class="imagen-camion" src="assets/img/camion.png" alt='...'/>Envío gratis a todo el país</h6>
-                        <h6 class="card-envioCosto" *ngIf="instrumentoAux.costoEnvio !=='G'">Costo de envio Interior de Argentina {{instrumentoAux.costoEnvio}}</h6>
-                        <p class="card-cantVentas">{{instrumentoAux.cantidadVendida}} vendidos</p>
+                        <h6 class="card-envioGratis" *ngIf="instrumentoAux.costo_envio ==='G'"><img class="imagen-camion" src="assets/img/camion.png" alt='...'/>Envío gratis a todo el país</h6>
+                        <h6 class="card-envioCosto" *ngIf="instrumentoAux.costo_envio !=='G'">Costo de envio Interior de Argentina {{instrumentoAux.costo_envio}}</h6>
+                        <p class="card-cantVentas">{{instrumentoAux.cantidad_vendida}} vendidos</p>
                     </div>
                 </div>
             </div>

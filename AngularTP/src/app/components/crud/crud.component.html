@@ -1,0 +1,42 @@
+<div class="CRUD">
+    <Nav></Nav>
+    <div class='cuerpo'>
+        <div class='nav_table'>
+            <button class='btn btn-primary' id="btn-agregar" [routerLink]="['/crud',0]">Agregar Instrumento</button>
+            <input type="text" class='input-buscar' [(ngModel)]="inputValue" (input)="filtrarInstrumentos($event)"
+                placeholder='Buscar' />
+        </div>
+        <div class='table-responsive'>
+            <table class="table table-dark table-hover table-sm align-middle">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Precio</th>
+                        <th>Costo de Envio</th>
+                        <th>Cantidad Vendida</th>
+                        <th>Boton Modificar</th>
+                        <th>Boton Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let instrumento of resultados; let i = index" class="RowInstrumento">
+                        <th>{{instrumento.id}}</th>
+                        <td>{{instrumento.instrumento}}</td>
+                        <td>{{instrumento.marca}}</td>
+                        <td>{{instrumento.modelo}}</td>
+                        <td>{{instrumento.precio}}</td>
+                        <td>{{instrumento.costo_envio}}</td>
+                        <td>{{instrumento.cantidad_vendida}}</td>
+                        <td><button class="btn btn-warning" [routerLink]="['/crud', instrumento.id]">Modificar</button></td>
+                        <td><button class="btn btn-danger" (click)="delete(instrumento.id)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

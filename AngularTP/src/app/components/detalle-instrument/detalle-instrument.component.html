@@ -2,7 +2,7 @@
     <div class="det-content">
         <div class="det-col1-content">
             <div class="imagen-content">
-                <img src="assets/img/{{instrumento.imagen}}" class="imagen-det" alt="..."/>
+                <img [src]="validarURLImagen(instrumento.imagen)" class="imagen-det" alt="..."/>
             </div>
             <p class="label-descripcion">Descripcion</p>
             <p class="det-descripcion">{{instrumento.descripcion}}</p>
@@ -14,8 +14,8 @@
                 <p class="det-precio">$ {{instrumento.precio}}</p>
                 <p class="det-marca">Marca: {{instrumento.marca}}</p>
                 <p class="det-modelo">Modelo: {{instrumento.modelo}}</p>
-                <h6 class="card-envioGratis" *ngIf="instrumento.costoEnvio ==='G'"><img class="imagen-camion" src="assets/img/camion.png" alt='...'/>Envío gratis a todo el país</h6>
-                        <h6 class="card-envioCosto" *ngIf="instrumento.costoEnvio !=='G'">Costo de envio Interior de Argentina {{instrumento.costoEnvio}}</h6>
+                <h6 class="card-envioGratis" *ngIf="instrumento.costo_envio==='G'"><img class="imagen-camion" src="assets/img/camion.png" alt='...'/>Envío gratis a todo el país</h6>
+                        <h6 class="card-envioCosto" *ngIf="instrumento.costo_envio !=='G'">Costo de envio Interior de Argentina {{instrumento.costo_envio}}</h6>
                 <button type="button" class="det-buttom-carrito">Agregar al carrito</button>
             </div>
         </div>
